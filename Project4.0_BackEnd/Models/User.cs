@@ -21,7 +21,6 @@ namespace Project4._0_BackEnd.Models
 
 
         //Relations
-        [ForeignKey("Usertype")]
         public int UsertypeID { get; set; }
         public Usertype Usertype { get; set; }
         [JsonIgnore]
