@@ -17,22 +17,27 @@ namespace Project4._0_BackEnd.Data
 
         public DbSet<User> Users { get; set; }
 
+        public DbSet<Measurement> Measurements { get; set; }
+
+        public DbSet<Sensor> Sensors { get; set; }
+
+        public DbSet<Sensortype> Sensortypes { get; set; }
+
+        public DbSet<Box> Boxes { get; set; }
+
+        public DbSet<Snapshot> Snapshots { get; set; }
+
+        public DbSet<Usertype> Usertypes { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>().ToTable("user");
+            modelBuilder.Entity<Usertype>().ToTable("Usertype");
+            modelBuilder.Entity<Sensortype>().ToTable("Sensortype");
+            modelBuilder.Entity<User>().ToTable("User");
+            modelBuilder.Entity<User>().HasOne(u => u.Usertype);
+            modelBuilder.Entity<User>().HasMany(u => u.Boxes);
+            modelBuilder.Entity<Measurement>().ToTable("Measurement");
         }
-
-        public DbSet<Project4._0_BackEnd.Models.Measurement> Measurement { get; set; }
-
-        public DbSet<Project4._0_BackEnd.Models.Sensor> Sensor { get; set; }
-
-        public DbSet<Project4._0_BackEnd.Models.Sensortype> Sensortype { get; set; }
-
-        public DbSet<Project4._0_BackEnd.Models.Box> Box { get; set; }
-
-        public DbSet<Project4._0_BackEnd.Models.Snapshot> Snapshot { get; set; }
-
-        public DbSet<Project4._0_BackEnd.Models.Usertype> Usertype { get; set; }
 
     }
 }

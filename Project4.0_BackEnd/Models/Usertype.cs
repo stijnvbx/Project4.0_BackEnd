@@ -8,7 +8,7 @@ namespace Project4._0_BackEnd.Models
     public class Usertype
     {
         public int UsertypeID { get; set; }
-        public string UsertypeName { get; set; }
+        public string UserTypeName { get; set; }
 
     }
 }
