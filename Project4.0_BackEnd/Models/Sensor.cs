@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Project4._0_BackEnd.Models
@@ -16,8 +17,10 @@ namespace Project4._0_BackEnd.Models
         public int BoxID { get; set; }
         public Box Box { get; set; }
 
-        [ForeignKey("Sensortype")]
         public int SensortypeID { get; set; }
         public Sensortype Sensortype { get; set; }
+
+        [JsonIgnore]
+        public ICollection<Measurement> Measurements { get; set; }
     }
 }
