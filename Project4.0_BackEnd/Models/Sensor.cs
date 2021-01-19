@@ -18,6 +18,6 @@ namespace Project4._0_BackEnd.Models
 
         [ForeignKey("Sensortype")]
         public int SensortypeID { get; set; }
-        public Sensor Sensor { get; set; }
+        public Sensortype Sensortype { get; set; }
     }
 }
