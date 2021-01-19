@@ -16,7 +16,5 @@ namespace Project4._0_BackEnd.Models
         public string bus { get; set; }
         public string postalcode { get; set; }
         public string city { get; set; }
-
-
     }
 }
