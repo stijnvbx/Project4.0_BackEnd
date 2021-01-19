@@ -22,5 +22,7 @@ namespace Project4._0_BackEnd.Models
         public User Landbouwer { get; set; }
         [JsonIgnore]
         public ICollection<Snapshot> Snapshots { get; set; }
+        [JsonIgnore]
+        public ICollection<Sensor> Sensors { get; set; }
     }
 }
