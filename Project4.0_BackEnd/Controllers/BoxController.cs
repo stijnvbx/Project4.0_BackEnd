@@ -104,7 +104,7 @@ namespace Project4._0_BackEnd.Controllers
 
         private bool BoxExists(int id)
         {
-            return _context.Box.Any(e => e.BoxID == id);
+            return _context.Boxes.Any(e => e.BoxID == id);
         }
     }
 }
