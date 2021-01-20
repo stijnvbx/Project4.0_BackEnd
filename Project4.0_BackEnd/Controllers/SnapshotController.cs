@@ -25,14 +25,14 @@ namespace Project4._0_BackEnd.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Snapshot>>> GetSnapshot()
         {
-            return await _context.Snapshot.ToListAsync();
+            return await _context.Snapshots.ToListAsync();
         }
 
         // GET: api/Snapshot/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Snapshot>> GetSnapshot(int id)
         {
-            var snapshot = await _context.Snapshot.FindAsync(id);
+            var snapshot = await _context.Snapshots.FindAsync(id);
 
             if (snapshot == null)
             {
@@ -80,7 +80,7 @@ namespace Project4._0_BackEnd.Controllers
         [HttpPost]
         public async Task<ActionResult<Snapshot>> PostSnapshot(Snapshot snapshot)
         {
-            _context.Snapshot.Add(snapshot);
+            _context.Snapshots.Add(snapshot);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetSnapshot", new { id = snapshot.SnapshotID }, snapshot);
@@ -90,13 +90,13 @@ namespace Project4._0_BackEnd.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<Snapshot>> DeleteSnapshot(int id)
         {
-            var snapshot = await _context.Snapshot.FindAsync(id);
+            var snapshot = await _context.Snapshots.FindAsync(id);
             if (snapshot == null)
             {
                 return NotFound();
             }
 
-            _context.Snapshot.Remove(snapshot);
+            _context.Snapshots.Remove(snapshot);
             await _context.SaveChangesAsync();
 
             return snapshot;
@@ -104,7 +104,7 @@ namespace Project4._0_BackEnd.Controllers
 
         private bool SnapshotExists(int id)
         {
-            return _context.Snapshot.Any(e => e.SnapshotID == id);
+            return _context.Snapshots.Any(e => e.SnapshotID == id);
         }
     }
 }

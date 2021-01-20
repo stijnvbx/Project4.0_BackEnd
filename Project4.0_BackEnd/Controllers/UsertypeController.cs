@@ -25,14 +25,14 @@ namespace Project4._0_BackEnd.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Usertype>>> GetUsertype()
         {
-            return await _context.Usertype.ToListAsync();
+            return await _context.Usertypes.ToListAsync();
         }
 
         // GET: api/Usertype/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Usertype>> GetUsertype(int id)
         {
-            var usertype = await _context.Usertype.FindAsync(id);
+            var usertype = await _context.Usertypes.FindAsync(id);
 
             if (usertype == null)
             {
@@ -80,7 +80,7 @@ namespace Project4._0_BackEnd.Controllers
         [HttpPost]
         public async Task<ActionResult<Usertype>> PostUsertype(Usertype usertype)
         {
-            _context.Usertype.Add(usertype);
+            _context.Usertypes.Add(usertype);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetUsertype", new { id = usertype.UsertypeID }, usertype);
@@ -90,13 +90,13 @@ namespace Project4._0_BackEnd.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<Usertype>> DeleteUsertype(int id)
         {
-            var usertype = await _context.Usertype.FindAsync(id);
+            var usertype = await _context.Usertypes.FindAsync(id);
             if (usertype == null)
             {
                 return NotFound();
             }
 
-            _context.Usertype.Remove(usertype);
+            _context.Usertypes.Remove(usertype);
             await _context.SaveChangesAsync();
 
             return usertype;
@@ -104,7 +104,7 @@ namespace Project4._0_BackEnd.Controllers
 
         private bool UsertypeExists(int id)
         {
-            return _context.Usertype.Any(e => e.UsertypeID == id);
+            return _context.Usertypes.Any(e => e.UsertypeID == id);
         }
     }
 }

@@ -25,14 +25,14 @@ namespace Project4._0_BackEnd.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Measurement>>> GetMeasurement()
         {
-            return await _context.Measurement.ToListAsync();
+            return await _context.Measurements.ToListAsync();
         }
 
         // GET: api/Measurement/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Measurement>> GetMeasurement(int id)
         {
-            var measurement = await _context.Measurement.FindAsync(id);
+            var measurement = await _context.Measurements.FindAsync(id);
 
             if (measurement == null)
             {
@@ -80,7 +80,7 @@ namespace Project4._0_BackEnd.Controllers
         [HttpPost]
         public async Task<ActionResult<Measurement>> PostMeasurement(Measurement measurement)
         {
-            _context.Measurement.Add(measurement);
+            _context.Measurements.Add(measurement);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetMeasurement", new { id = measurement.MeasurementID }, measurement);
@@ -90,13 +90,13 @@ namespace Project4._0_BackEnd.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<Measurement>> DeleteMeasurement(int id)
         {
-            var measurement = await _context.Measurement.FindAsync(id);
+            var measurement = await _context.Measurements.FindAsync(id);
             if (measurement == null)
             {
                 return NotFound();
             }
 
-            _context.Measurement.Remove(measurement);
+            _context.Measurements.Remove(measurement);
             await _context.SaveChangesAsync();
 
             return measurement;
@@ -104,7 +104,7 @@ namespace Project4._0_BackEnd.Controllers
 
         private bool MeasurementExists(int id)
         {
-            return _context.Measurement.Any(e => e.MeasurementID == id);
+            return _context.Measurements.Any(e => e.MeasurementID == id);
         }
     }
 }

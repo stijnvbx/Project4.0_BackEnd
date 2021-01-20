@@ -14,6 +14,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.OpenApi.Models;
 using Microsoft.EntityFrameworkCore.SqlServer;
+using Project4._0_BackEnd.Models;
 
 namespace Project4._0_BackEnd
 {
@@ -40,7 +41,7 @@ namespace Project4._0_BackEnd
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ApiContext context)
         {
             if (env.IsDevelopment())
             {
@@ -57,6 +58,8 @@ namespace Project4._0_BackEnd
             {
                 endpoints.MapControllers();
             });
+
+            DBInitializer.Initialize(context);
         }
     }
 }
