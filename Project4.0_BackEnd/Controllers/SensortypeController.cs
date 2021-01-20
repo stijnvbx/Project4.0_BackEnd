@@ -25,14 +25,14 @@ namespace Project4._0_BackEnd.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Sensortype>>> GetSensortype()
         {
-            return await _context.Sensortype.ToListAsync();
+            return await _context.Sensortypes.ToListAsync();
         }
 
         // GET: api/Sensortype/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Sensortype>> GetSensortype(int id)
         {
-            var sensortype = await _context.Sensortype.FindAsync(id);
+            var sensortype = await _context.Sensortypes.FindAsync(id);
 
             if (sensortype == null)
             {
@@ -80,7 +80,7 @@ namespace Project4._0_BackEnd.Controllers
         [HttpPost]
         public async Task<ActionResult<Sensortype>> PostSensortype(Sensortype sensortype)
         {
-            _context.Sensortype.Add(sensortype);
+            _context.Sensortypes.Add(sensortype);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetSensortype", new { id = sensortype.SensortypeID }, sensortype);
@@ -90,13 +90,13 @@ namespace Project4._0_BackEnd.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<Sensortype>> DeleteSensortype(int id)
         {
-            var sensortype = await _context.Sensortype.FindAsync(id);
+            var sensortype = await _context.Sensortypes.FindAsync(id);
             if (sensortype == null)
             {
                 return NotFound();
             }
 
-            _context.Sensortype.Remove(sensortype);
+            _context.Sensortypes.Remove(sensortype);
             await _context.SaveChangesAsync();
 
             return sensortype;
@@ -104,7 +104,7 @@ namespace Project4._0_BackEnd.Controllers
 
         private bool SensortypeExists(int id)
         {
-            return _context.Sensortype.Any(e => e.SensortypeID == id);
+            return _context.Sensortypes.Any(e => e.SensortypeID == id);
         }
     }
 }

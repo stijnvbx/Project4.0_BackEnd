@@ -25,14 +25,14 @@ namespace Project4._0_BackEnd.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Sensor>>> GetSensor()
         {
-            return await _context.Sensor.ToListAsync();
+            return await _context.Sensors.ToListAsync();
         }
 
         // GET: api/Sensor/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Sensor>> GetSensor(int id)
         {
-            var sensor = await _context.Sensor.FindAsync(id);
+            var sensor = await _context.Sensors.FindAsync(id);
 
             if (sensor == null)
             {
@@ -80,7 +80,7 @@ namespace Project4._0_BackEnd.Controllers
         [HttpPost]
         public async Task<ActionResult<Sensor>> PostSensor(Sensor sensor)
         {
-            _context.Sensor.Add(sensor);
+            _context.Sensors.Add(sensor);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetSensor", new { id = sensor.SensorID }, sensor);
@@ -90,13 +90,13 @@ namespace Project4._0_BackEnd.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<Sensor>> DeleteSensor(int id)
         {
-            var sensor = await _context.Sensor.FindAsync(id);
+            var sensor = await _context.Sensors.FindAsync(id);
             if (sensor == null)
             {
                 return NotFound();
             }
 
-            _context.Sensor.Remove(sensor);
+            _context.Sensors.Remove(sensor);
             await _context.SaveChangesAsync();
 
             return sensor;
@@ -104,7 +104,7 @@ namespace Project4._0_BackEnd.Controllers
 
         private bool SensorExists(int id)
         {
-            return _context.Sensor.Any(e => e.SensorID == id);
+            return _context.Sensors.Any(e => e.SensorID == id);
         }
     }
 }

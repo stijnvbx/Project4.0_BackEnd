@@ -32,7 +32,7 @@ namespace Project4._0_BackEnd.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Box>> GetBox(int id)
         {
-            var box = await _context.Box.FindAsync(id);
+            var box = await _context.Boxes.FindAsync(id);
 
             if (box == null)
             {
@@ -80,7 +80,7 @@ namespace Project4._0_BackEnd.Controllers
         [HttpPost]
         public async Task<ActionResult<Box>> PostBox(Box box)
         {
-            _context.Box.Add(box);
+            _context.Boxes.Add(box);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetBox", new { id = box.BoxID }, box);
@@ -90,13 +90,13 @@ namespace Project4._0_BackEnd.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<Box>> DeleteBox(int id)
         {
-            var box = await _context.Box.FindAsync(id);
+            var box = await _context.Boxes.FindAsync(id);
             if (box == null)
             {
                 return NotFound();
             }
 
-            _context.Box.Remove(box);
+            _context.Boxes.Remove(box);
             await _context.SaveChangesAsync();
 
             return box;
