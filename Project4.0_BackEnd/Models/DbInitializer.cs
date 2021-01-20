@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Project4._0_BackEnd.Models
 {
-    public class DbInitializer
+    public class DBInitializer
     {
         public static void Initialize(ApiContext context)
         {
