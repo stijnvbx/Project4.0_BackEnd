@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace Project4._0_BackEnd.Models
 {
-    public class Sensortype
+    public class SensorType
     {
-        public int SensortypeID { get; set; }
+        public int SensorTypeID { get; set; }
         public string Name { get; set; }
         public string Unit { get; set; }
     }

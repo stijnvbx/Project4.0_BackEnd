@@ -20,7 +20,6 @@ namespace Project4._0_BackEnd.Models
         public ICollection<Monitoring> Monitorings { get; set; }
         [JsonIgnore]
         public ICollection<BoxUser> BoxUsers { get; set; }
-        [JsonIgnore]
         public ICollection<SensorBox> SensorBoxes { get; set; }
     }
 }

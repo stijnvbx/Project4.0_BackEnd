@@ -27,29 +27,35 @@ namespace Project4._0_BackEnd.Data
 
         public DbSet<Sensor> Sensors { get; set; }
 
-        public DbSet<Sensortype> Sensortypes { get; set; }
+        public DbSet<SensorType> SensorTypes { get; set; }
 
         public DbSet<Box> Boxes { get; set; }
 
         public DbSet<Monitoring> Monitorings { get; set; }
 
-        public DbSet<Usertype> Usertypes { get; set; }
+        public DbSet<UserType> UserTypes { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Usertype>().ToTable("Usertype");
-            modelBuilder.Entity<Sensortype>().ToTable("Sensortype");
+            modelBuilder.Entity<UserType>().ToTable("Usertype");
+            modelBuilder.Entity<SensorType>().ToTable("Sensortype");
             modelBuilder.Entity<User>().ToTable("User");
-            //modelBuilder.Entity<User>().HasMany(u => u.Boxes).WithOne(b => b.Landbouwer);
-            modelBuilder.Entity<Box>().ToTable("Box");
-           // modelBuilder.Entity<Box>().HasOne(b => b.Landbouwer).WithMany(u => u.Boxes);
-            //modelBuilder.Entity<Box>().HasMany(b => b.Snapshots).WithOne(s => s.Box);
             modelBuilder.Entity<Sensor>().ToTable("Sensor");
-            //modelBuilder.Entity<Sensor>().HasMany(s => s.Measurements).WithOne(m => m.Sensor);
+            modelBuilder.Entity<Box>().ToTable("Box");
+            modelBuilder.Entity<Box>().HasMany(b => b.Monitorings).WithOne(s => s.Box);
+            modelBuilder.Entity<Box>().HasMany(b => b.BoxUsers).WithOne(b => b.Box);
+            modelBuilder.Entity<BoxUser>().ToTable("BoxUser");
+            modelBuilder.Entity<BoxUser>().HasOne(b => b.User).WithMany(b => b.BoxUsers);
+            modelBuilder.Entity<BoxUser>().HasOne(b => b.Box).WithMany(b => b.BoxUsers);
+            modelBuilder.Entity<BoxUser>().HasMany(b => b.Locations).WithOne(b => b.BoxUser);
+            modelBuilder.Entity<Monitoring>().ToTable("Monitoring");
+            modelBuilder.Entity<Monitoring>().HasOne(m => m.Box).WithMany(m => m.Monitorings);
+            modelBuilder.Entity<SensorBox>().ToTable("SensorBox");
+            modelBuilder.Entity<SensorBox>().HasKey(s => new { s.BoxID, s.SensorID });
+            modelBuilder.Entity<SensorBox>().HasOne(s => s.Box).WithMany(s => s.SensorBoxes);
             modelBuilder.Entity<Measurement>().ToTable("Measurement");
-            //modelBuilder.Entity<Measurement>().HasOne(m => m.Sensor).WithMany(s => s.Measurements);
-            //modelBuilder.Entity<Snapshot>().ToTable("Snapshot");
-            //modelBuilder.Entity<Snapshot>().HasOne(s => s.Box).WithMany(b => b.Snapshots);
+            modelBuilder.Entity<Measurement>().HasOne(m => m.SensorBox).WithMany(m => m.Measurements).HasForeignKey(m => new { m.BoxID, m.SensorID });
+            modelBuilder.Entity<Location>().ToTable("Location");
         }
 
     }

@@ -16,7 +16,7 @@ namespace Project4._0_BackEnd.Models
         [ForeignKey("Sensor")]
         public int SensorID { get; set; }
         public Sensor Sensor { get; set; }
-        [JsonIgnore]
+        [NotMapped]
         public ICollection<Measurement> Measurements { get; set; }
     }
 }

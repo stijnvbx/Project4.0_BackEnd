@@ -12,48 +12,48 @@ namespace Project4._0_BackEnd.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UsertypeController : ControllerBase
+    public class UserTypeController : ControllerBase
     {
         private readonly ApiContext _context;
 
-        public UsertypeController(ApiContext context)
+        public UserTypeController(ApiContext context)
         {
             _context = context;
         }
 
-        // GET: api/Usertype
+        // GET: api/UserType
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Usertype>>> GetUsertype()
+        public async Task<ActionResult<IEnumerable<UserType>>> GetUserType()
         {
-            return await _context.Usertypes.ToListAsync();
+            return await _context.UserTypes.ToListAsync();
         }
 
-        // GET: api/Usertype/5
+        // GET: api/UserType/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Usertype>> GetUsertype(int id)
+        public async Task<ActionResult<UserType>> GetUserType(int id)
         {
-            var usertype = await _context.Usertypes.FindAsync(id);
+            var UserType = await _context.UserTypes.FindAsync(id);
 
-            if (usertype == null)
+            if (UserType == null)
             {
                 return NotFound();
             }
 
-            return usertype;
+            return UserType;
         }
 
-        // PUT: api/Usertype/5
+        // PUT: api/UserType/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutUsertype(int id, Usertype usertype)
+        public async Task<IActionResult> PutUserType(int id, UserType UserType)
         {
-            if (id != usertype.UsertypeID)
+            if (id != UserType.UserTypeID)
             {
                 return BadRequest();
             }
 
-            _context.Entry(usertype).State = EntityState.Modified;
+            _context.Entry(UserType).State = EntityState.Modified;
 
             try
             {
@@ -61,7 +61,7 @@ namespace Project4._0_BackEnd.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!UsertypeExists(id))
+                if (!UserTypeExists(id))
                 {
                     return NotFound();
                 }
@@ -74,37 +74,37 @@ namespace Project4._0_BackEnd.Controllers
             return NoContent();
         }
 
-        // POST: api/Usertype
+        // POST: api/UserType
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<Usertype>> PostUsertype(Usertype usertype)
+        public async Task<ActionResult<UserType>> PostUserType(UserType UserType)
         {
-            _context.Usertypes.Add(usertype);
+            _context.UserTypes.Add(UserType);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetUsertype", new { id = usertype.UsertypeID }, usertype);
+            return CreatedAtAction("GetUserType", new { id = UserType.UserTypeID }, UserType);
         }
 
-        // DELETE: api/Usertype/5
+        // DELETE: api/UserType/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Usertype>> DeleteUsertype(int id)
+        public async Task<ActionResult<UserType>> DeleteUserType(int id)
         {
-            var usertype = await _context.Usertypes.FindAsync(id);
-            if (usertype == null)
+            var UserType = await _context.UserTypes.FindAsync(id);
+            if (UserType == null)
             {
                 return NotFound();
             }
 
-            _context.Usertypes.Remove(usertype);
+            _context.UserTypes.Remove(UserType);
             await _context.SaveChangesAsync();
 
-            return usertype;
+            return UserType;
         }
 
-        private bool UsertypeExists(int id)
+        private bool UserTypeExists(int id)
         {
-            return _context.Usertypes.Any(e => e.UsertypeID == id);
+            return _context.UserTypes.Any(e => e.UserTypeID == id);
         }
     }
 }
