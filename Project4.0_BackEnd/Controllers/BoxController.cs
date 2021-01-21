@@ -25,7 +25,7 @@ namespace Project4._0_BackEnd.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Box>>> GetBox()
         {
-            return await _context.Box.ToListAsync();
+            return await _context.Boxes.ToListAsync();
         }
 
         // GET: api/Box/5

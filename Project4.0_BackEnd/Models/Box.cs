@@ -14,15 +14,13 @@ namespace Project4._0_BackEnd.Models
         public string Name { get; set; }
         public string Comment { get; set; }
         public bool Active { get; set; }
-        public DateTime InstalledOn { get; set; }
 
         //Relations
-        [ForeignKey("User")]
-        public int LandbouwerID { get; set; }
-        public User Landbouwer { get; set; }
         [JsonIgnore]
-        public ICollection<Snapshot> Snapshots { get; set; }
+        public ICollection<Monitoring> Monitorings { get; set; }
         [JsonIgnore]
-        public ICollection<Sensor> Sensors { get; set; }
+        public ICollection<BoxUser> BoxUsers { get; set; }
+        [JsonIgnore]
+        public ICollection<SensorBox> SensorBoxes { get; set; }
     }
 }
