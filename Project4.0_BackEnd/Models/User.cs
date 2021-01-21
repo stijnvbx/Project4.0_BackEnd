@@ -14,10 +14,8 @@ namespace Project4._0_BackEnd.Models
         public string LastName { get; set; }
         public string Password { get; set; }
         public string Email { get; set; }
-        public string Street { get; set; }
-        public string Housenr { get; set; }
-        public string Bus { get; set; }
-        public string Postalcode { get; set; }
+        public string Address { get; set; }
+        public string PostalCode { get; set; }
         public string City { get; set; }
 
 
@@ -25,6 +23,6 @@ namespace Project4._0_BackEnd.Models
         public int UsertypeID { get; set; }
         public Usertype Usertype { get; set; }
         [JsonIgnore]
-        public ICollection<Box> Boxes { get; set; }
+        public ICollection<BoxUser> BoxUsers { get; set; }
     }
 }

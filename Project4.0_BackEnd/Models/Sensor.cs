@@ -10,17 +10,13 @@ namespace Project4._0_BackEnd.Models
     public class Sensor
     {
         public int SensorID { get; set; }
-        public DateTime InstalledOn { get; set; }
+        public string Name { get; set; }
 
         //Relations
-        [ForeignKey("Box")]
-        public int BoxID { get; set; }
-        public Box Box { get; set; }
-
         public int SensortypeID { get; set; }
         public Sensortype Sensortype { get; set; }
 
         [JsonIgnore]
-        public ICollection<Measurement> Measurements { get; set; }
+        public ICollection<SensorBox> SensorBoxes { get; set; }
     }
 }
