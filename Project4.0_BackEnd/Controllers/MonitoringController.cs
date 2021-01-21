@@ -12,48 +12,48 @@ namespace Project4._0_BackEnd.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class SensorTypeController : ControllerBase
+    public class MonitoringController : ControllerBase
     {
         private readonly ApiContext _context;
 
-        public SensorTypeController(ApiContext context)
+        public MonitoringController(ApiContext context)
         {
             _context = context;
         }
 
-        // GET: api/SensorType
+        // GET: api/Monitoring
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<SensorType>>> GetSensorType()
+        public async Task<ActionResult<IEnumerable<Monitoring>>> GetMonitoring()
         {
-            return await _context.SensorTypes.ToListAsync();
+            return await _context.Monitorings.ToListAsync();
         }
 
-        // GET: api/SensorType/5
+        // GET: api/Monitoring/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<SensorType>> GetSensorType(int id)
+        public async Task<ActionResult<Monitoring>> GetMonitoring(int id)
         {
-            var SensorType = await _context.SensorTypes.FindAsync(id);
+            var Monitoring = await _context.Monitorings.FindAsync(id);
 
-            if (SensorType == null)
+            if (Monitoring == null)
             {
                 return NotFound();
             }
 
-            return SensorType;
+            return Monitoring;
         }
 
-        // PUT: api/SensorType/5
+        // PUT: api/Monitoring/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutSensorType(int id, SensorType SensorType)
+        public async Task<IActionResult> PutMonitoring(int id, Monitoring Monitoring)
         {
-            if (id != SensorType.SensorTypeID)
+            if (id != Monitoring.MonitoringID)
             {
                 return BadRequest();
             }
 
-            _context.Entry(SensorType).State = EntityState.Modified;
+            _context.Entry(Monitoring).State = EntityState.Modified;
 
             try
             {
@@ -61,7 +61,7 @@ namespace Project4._0_BackEnd.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!SensorTypeExists(id))
+                if (!MonitoringExists(id))
                 {
                     return NotFound();
                 }
@@ -74,37 +74,37 @@ namespace Project4._0_BackEnd.Controllers
             return NoContent();
         }
 
-        // POST: api/SensorType
+        // POST: api/Monitoring
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<SensorType>> PostSensorType(SensorType SensorType)
+        public async Task<ActionResult<Monitoring>> PostMonitoring(Monitoring Monitoring)
         {
-            _context.SensorTypes.Add(SensorType);
+            _context.Monitorings.Add(Monitoring);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetSensorType", new { id = SensorType.SensorTypeID }, SensorType);
+            return CreatedAtAction("GetMonitoring", new { id = Monitoring.MonitoringID }, Monitoring);
         }
 
-        // DELETE: api/SensorType/5
+        // DELETE: api/Monitoring/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<SensorType>> DeleteSensorType(int id)
+        public async Task<ActionResult<Monitoring>> DeleteMonitoring(int id)
         {
-            var SensorType = await _context.SensorTypes.FindAsync(id);
-            if (SensorType == null)
+            var Monitoring = await _context.Monitorings.FindAsync(id);
+            if (Monitoring == null)
             {
                 return NotFound();
             }
 
-            _context.SensorTypes.Remove(SensorType);
+            _context.Monitorings.Remove(Monitoring);
             await _context.SaveChangesAsync();
 
-            return SensorType;
+            return Monitoring;
         }
 
-        private bool SensorTypeExists(int id)
+        private bool MonitoringExists(int id)
         {
-            return _context.SensorTypes.Any(e => e.SensorTypeID == id);
+            return _context.Monitorings.Any(e => e.MonitoringID == id);
         }
     }
 }

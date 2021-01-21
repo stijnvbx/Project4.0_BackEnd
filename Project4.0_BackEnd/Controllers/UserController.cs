@@ -25,7 +25,7 @@ namespace Project4._0_BackEnd.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<User>>> GetUsers()
         {
-            return await _context.Users.Include(u => u.Usertype).ToListAsync();
+            return await _context.Users.Include(u => u.UserType).ToListAsync();
         }
 
         // GET: api/User/5

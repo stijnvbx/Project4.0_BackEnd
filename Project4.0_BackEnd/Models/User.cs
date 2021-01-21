@@ -20,8 +20,8 @@ namespace Project4._0_BackEnd.Models
 
 
         //Relations
-        public int UsertypeID { get; set; }
-        public Usertype Usertype { get; set; }
+        public int UserTypeID { get; set; }
+        public UserType UserType { get; set; }
         [JsonIgnore]
         public ICollection<BoxUser> BoxUsers { get; set; }
     }

@@ -12,65 +12,54 @@ namespace Project4._0_BackEnd.Models
         {
             context.Database.EnsureCreated();
 
-            if (context.Usertypes.Any())
+            if (context.UserTypes.Any())
             {
                 return;
             }
 
-            //Usertypes
-            context.Usertypes.AddRange(
-               new Usertype { UserTypeName = "admin" },
-               new Usertype { UserTypeName = "Vmedewerker" },
-               new Usertype { UserTypeName = "user" }
+            context.UserTypes.AddRange(
+                new UserType { UserTypeName = "admin" },
+                new UserType { UserTypeName = "medewerker" },
+                new UserType { UserTypeName = "user" }
                 );
             context.SaveChanges();
-
-            //Users
             context.Users.AddRange(
-               //new User { FirstName = "admin", LastName = "adminson", Password = "test", Email = "admin@test.be", Street = "test", Housenr = "1", Bus = "G", Postalcode = "3920", City = "Lommel", UsertypeID = 1 },
-               //new User { FirstName = "medewerker", LastName = "vito", Password = "test", Email = "user1@vito.be", Street = "test", Housenr = "1", Bus = "NB", Postalcode = "3029", City = "Lommel", UsertypeID = 2 },
-               //new User { FirstName = "Gust", LastName = "van der Sanden", Password = "test", Email = "gustvdsanden@gmail.com", Street = "wijerken", Housenr = "41", Postalcode = "3920", City = "Lommel", UsertypeID = 3 },
-               //new User { FirstName = "Djorven", LastName = "Wielockx", Password = "test", Email = "djorven@gmail.com", Street = "test", Housenr = "1", Postalcode = "3920", City = "Lommel", UsertypeID = 3 },
-               //new User { FirstName = "Youri", LastName = "Van Laer", Password = "test", Email = "youri@gmail.com", Street = "test", Housenr = "1", Postalcode = "3920", City = "Lommel", UsertypeID = 3 },
-               //new User { FirstName = "Ruben", LastName = "Lievens", Password = "test", Email = "ruben@gmail.com", Street = "test", Housenr = "1", Postalcode = "3920", City = "Lommel", UsertypeID = 3 }
-                ) ;
+                new User { FirstName = "admin", LastName = "adminson", Password = "test", Email = "admin@test.be", Address = "wijerken 41", PostalCode = "3920", City = "Lommel", UserTypeID = 1 },
+                new User { FirstName = "medewerker", LastName = "vito", Password = "test", Email = "user1@vito.be", Address = "wijerken 41", PostalCode = "3920", City = "Lommel", UserTypeID = 2 },
+                new User { FirstName = "Gust", LastName = "van der Sanden", Password = "gust", Email = "gustvdsanden@gmail.com", Address = "wijerken 41", PostalCode = "3920", City = "Lommel", UserTypeID = 3 }
+                );
             context.SaveChanges();
-
-            //Box
             context.Boxes.AddRange(
-                //new Box { MacAddress = "123ABC", Name = "Sensorbox1b", Comment = "Sensorbox van team 1B", Active = true, LandbouwerID = 3, InstalledOn = DateTime.Now },
-                //new Box { MacAddress = "123ABCD", Name = "Sensorbox2b", Comment = "Sensorbox van team 2B", Active = true, LandbouwerID = 4, InstalledOn = DateTime.Now },
-                //new Box { MacAddress = "123ABCDE", Name = "Sensorbox3b", Comment = "Sensorbox van team 3B", Active = true, LandbouwerID = 5, InstalledOn = DateTime.Now },
-                //new Box { MacAddress = "123ABCDEF", Name = "Sensorbox4b", Comment = "Sensorbox van team 4B", Active = true, LandbouwerID = 6, InstalledOn = DateTime.Now }
+                new Box { MacAddress = "123ABC", Name = "SensorBox 1b", Comment = "De box van team 1", Active = true },
+                new Box { MacAddress = "123ABC", Name = "SensorBox 2b", Comment = "De box van team 2", Active = true },
+                new Box { MacAddress = "123ABC", Name = "SensorBox 3b", Comment = "De box van team 3", Active = true }
                 );
             context.SaveChanges();
-
-
-            //Sensortype
-            context.Sensortypes.AddRange(
-                new Sensortype { Name = "Temperatuursensor", Unit = "C" },
-                new Sensortype { Name = "Luchtvochtigheid", Unit = "water/m3" },
-                new Sensortype { Name = "Luchtkwaliteit", Unit = "???" },
-                new Sensortype { Name = "Test", Unit = "Test" }
+            context.BoxUsers.AddRange(
+                new BoxUser { BoxID = 1, UserID = 1, StartDate = new DateTime(), EndDate = new DateTime() },
+                new BoxUser { BoxID = 2, UserID = 2, StartDate = new DateTime(), EndDate = new DateTime() },
+                new BoxUser { BoxID = 3, UserID = 3, StartDate = new DateTime(), EndDate = new DateTime() }
                 );
             context.SaveChanges();
-
-            //Sensor
+            context.SensorTypes.AddRange(
+                new SensorType { Name = "temperatuur", Unit = "C" },
+                new SensorType { Name = "windsnelheid", Unit = "km/u" }
+                );
+            context.SaveChanges();
             context.Sensors.AddRange(
-                //new Sensor { BoxID = 1, SensortypeID = 1, InstalledOn = DateTime.Now },
-                //new Sensor { BoxID = 2, SensortypeID = 1, InstalledOn = DateTime.Now },
-                //new Sensor { BoxID = 3, SensortypeID = 1, InstalledOn = DateTime.Now },
-                //new Sensor { BoxID = 4, SensortypeID = 1, InstalledOn = DateTime.Now },
-                //new Sensor { BoxID = 1, SensortypeID = 3, InstalledOn = DateTime.Now }
+                new Sensor { Name = "Grondtemperatuur", SensorTypeID = 1 },
+                new Sensor { Name = "Luchttemperatuur", SensorTypeID = 1 },
+                new Sensor { Name = "Windsnelheid", SensorTypeID = 2 }
                 );
             context.SaveChanges();
-
-            //Measurement
+            context.SensorBoxes.AddRange(
+                new SensorBox { SensorID = 1, BoxID = 1 },
+                new SensorBox { SensorID = 1, BoxID = 2 },
+                new SensorBox { SensorID = 2, BoxID = 1 }
+                );
+            context.SaveChanges();
             context.Measurements.AddRange(
-                new Measurement { SensorID = 1, Value = "32", Timestamp = DateTime.Now },
-                new Measurement { SensorID = 1, Value = "33", Timestamp = DateTime.Now },
-                new Measurement { SensorID = 2, Value = "21", Timestamp = DateTime.Now },
-                new Measurement { SensorID = 2, Value = "12", Timestamp = DateTime.Now }
+                new Measurement { BoxID = 1, SensorID = 1, Timestamp = new DateTime(), Value = "200"}
                 );
             context.SaveChanges();
         }

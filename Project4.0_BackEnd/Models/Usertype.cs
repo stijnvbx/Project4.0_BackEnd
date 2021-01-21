@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace Project4._0_BackEnd.Models
 {
-    public class Usertype
+    public class UserType
     {
-        public int UsertypeID { get; set; }
+        public int UserTypeID { get; set; }
         public string UserTypeName { get; set; }
 
     }

@@ -13,11 +13,10 @@ namespace Project4._0_BackEnd.Models
         public DateTime Timestamp { get; set; }
 
         //Relations
-        [ForeignKey("Sensor")]
+        [ForeignKey("SensorID")]
         public int SensorID { get; set; }
-        public Sensor Sensor { get; set; }
-        [ForeignKey("Box")]
+        [ForeignKey("BoxID")]
         public int BoxID { get; set; }
-        public Box Box { get; set; }
+        public SensorBox SensorBox { get; set; }
     }
 }

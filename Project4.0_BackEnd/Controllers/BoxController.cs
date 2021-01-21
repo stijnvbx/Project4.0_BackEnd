@@ -28,6 +28,13 @@ namespace Project4._0_BackEnd.Controllers
             return await _context.Boxes.ToListAsync();
         }
 
+        // GET: api/Box/Sensor
+        [HttpGet("Sensor/Measurements")]
+        public async Task<ActionResult<IEnumerable<Box>>> GetBoxWithSensor()
+        {
+            return await _context.Boxes.Include(b => b.SensorBoxes).ThenInclude(s => s.Measurements).Include(b => b.SensorBoxes).ThenInclude(s => s.Sensor).ToListAsync();
+        }
+
         // GET: api/Box/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Box>> GetBox(int id)

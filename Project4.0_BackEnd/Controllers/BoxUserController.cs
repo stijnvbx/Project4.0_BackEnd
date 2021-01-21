@@ -12,48 +12,48 @@ namespace Project4._0_BackEnd.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class SensorTypeController : ControllerBase
+    public class BoxUserController : ControllerBase
     {
         private readonly ApiContext _context;
 
-        public SensorTypeController(ApiContext context)
+        public BoxUserController(ApiContext context)
         {
             _context = context;
         }
 
-        // GET: api/SensorType
+        // GET: api/BoxUser
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<SensorType>>> GetSensorType()
+        public async Task<ActionResult<IEnumerable<BoxUser>>> GetBoxUser()
         {
-            return await _context.SensorTypes.ToListAsync();
+            return await _context.BoxUsers.ToListAsync();
         }
 
-        // GET: api/SensorType/5
+        // GET: api/BoxUser/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<SensorType>> GetSensorType(int id)
+        public async Task<ActionResult<BoxUser>> GetBoxUser(int id)
         {
-            var SensorType = await _context.SensorTypes.FindAsync(id);
+            var BoxUser = await _context.BoxUsers.FindAsync(id);
 
-            if (SensorType == null)
+            if (BoxUser == null)
             {
                 return NotFound();
             }
 
-            return SensorType;
+            return BoxUser;
         }
 
-        // PUT: api/SensorType/5
+        // PUT: api/BoxUser/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutSensorType(int id, SensorType SensorType)
+        public async Task<IActionResult> PutBoxUser(int id, BoxUser BoxUser)
         {
-            if (id != SensorType.SensorTypeID)
+            if (id != BoxUser.BoxUserID)
             {
                 return BadRequest();
             }
 
-            _context.Entry(SensorType).State = EntityState.Modified;
+            _context.Entry(BoxUser).State = EntityState.Modified;
 
             try
             {
@@ -61,7 +61,7 @@ namespace Project4._0_BackEnd.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!SensorTypeExists(id))
+                if (!BoxUserExists(id))
                 {
                     return NotFound();
                 }
@@ -74,37 +74,37 @@ namespace Project4._0_BackEnd.Controllers
             return NoContent();
         }
 
-        // POST: api/SensorType
+        // POST: api/BoxUser
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<SensorType>> PostSensorType(SensorType SensorType)
+        public async Task<ActionResult<BoxUser>> PostBoxUser(BoxUser BoxUser)
         {
-            _context.SensorTypes.Add(SensorType);
+            _context.BoxUsers.Add(BoxUser);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetSensorType", new { id = SensorType.SensorTypeID }, SensorType);
+            return CreatedAtAction("GetBoxUser", new { id = BoxUser.BoxUserID }, BoxUser);
         }
 
-        // DELETE: api/SensorType/5
+        // DELETE: api/BoxUser/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<SensorType>> DeleteSensorType(int id)
+        public async Task<ActionResult<BoxUser>> DeleteBoxUser(int id)
         {
-            var SensorType = await _context.SensorTypes.FindAsync(id);
-            if (SensorType == null)
+            var BoxUser = await _context.BoxUsers.FindAsync(id);
+            if (BoxUser == null)
             {
                 return NotFound();
             }
 
-            _context.SensorTypes.Remove(SensorType);
+            _context.BoxUsers.Remove(BoxUser);
             await _context.SaveChangesAsync();
 
-            return SensorType;
+            return BoxUser;
         }
 
-        private bool SensorTypeExists(int id)
+        private bool BoxUserExists(int id)
         {
-            return _context.SensorTypes.Any(e => e.SensorTypeID == id);
+            return _context.BoxUsers.Any(e => e.BoxUserID == id);
         }
     }
 }

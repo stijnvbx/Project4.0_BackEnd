@@ -13,10 +13,7 @@ namespace Project4._0_BackEnd.Models
         public string Name { get; set; }
 
         //Relations
-        public int SensortypeID { get; set; }
-        public Sensortype Sensortype { get; set; }
-
-        [JsonIgnore]
-        public ICollection<SensorBox> SensorBoxes { get; set; }
+        public int SensorTypeID { get; set; }
+        public SensorType SensorType { get; set; }
     }
 }
