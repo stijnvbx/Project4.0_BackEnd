@@ -37,8 +37,8 @@ namespace Project4._0_BackEnd.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<UserType>().ToTable("Usertype");
-            modelBuilder.Entity<SensorType>().ToTable("Sensortype");
+            modelBuilder.Entity<UserType>().ToTable("UserType");
+            modelBuilder.Entity<SensorType>().ToTable("SensorType");
             modelBuilder.Entity<User>().ToTable("User");
             modelBuilder.Entity<Sensor>().ToTable("Sensor");
             modelBuilder.Entity<Box>().ToTable("Box");
