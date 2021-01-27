@@ -33,7 +33,7 @@ namespace Project4._0_BackEnd.Controllers
             measurement1.BoxID = box.BoxID;
             measurement1.SensorID = 12;
             measurement1.Value = list[1];
-            measurement1.Timestamp = DateTime.Now;
+            measurement1.TimeStamp = DateTime.Now;
             _context.Measurements.Add(measurement1);
             await _context.SaveChangesAsync();
 
