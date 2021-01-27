@@ -10,7 +10,7 @@ namespace Project4._0_BackEnd.Models
     {
         public int MeasurementID { get; set; }
         public string Value { get; set; }
-        public DateTime Timestamp { get; set; }
+        public DateTime TimeStamp { get; set; }
 
         //Relations
         [ForeignKey("SensorID")]
