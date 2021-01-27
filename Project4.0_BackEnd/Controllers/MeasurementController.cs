@@ -28,6 +28,12 @@ namespace Project4._0_BackEnd.Controllers
             return await _context.Measurements.ToListAsync();
         }
 
+        [HttpGet("Sensor/{id}")]
+        public async Task<ActionResult<IEnumerable<Measurement>>> GetMeasurementsFromSensor(int id)
+        {
+            return await _context.Measurements.Where(m => m.SensorID == id).ToListAsync();
+        }
+
         // GET: api/Measurement/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Measurement>> GetMeasurement(int id)
