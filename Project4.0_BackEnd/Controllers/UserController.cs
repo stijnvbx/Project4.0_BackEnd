@@ -35,6 +35,13 @@ namespace Project4._0_BackEnd.Controllers
             return await _context.Users.Where(u => u.Email == email).Where(u => u.Password == password).ToListAsync();
         }
 
+        // GET: api/User/email
+        [HttpGet("email")]
+        public async Task<ActionResult<IEnumerable<User>>> GetUserEmail(string email)
+        {
+            return await _context.Users.Where(u => u.Email == email).ToListAsync();
+        }
+
         // GET: api/User/5
         [HttpGet("{id}")]
         public async Task<ActionResult<User>> GetUser(int id)
