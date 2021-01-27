@@ -28,6 +28,13 @@ namespace Project4._0_BackEnd.Controllers
             return await _context.BoxUsers.ToListAsync();
         }
 
+        // GET: api/BoxUser/userId/{id}
+        [HttpGet("userId/{id}")]
+        public async Task<ActionResult<IEnumerable<BoxUser>>> GetBoxUserWithUserId(int id)
+        {
+            return await _context.BoxUsers.Include(b => b.Box).Include(b => b.Locations).Where(b => b.UserID == id).ToListAsync();
+        }
+
         // GET: api/BoxUser/5
         [HttpGet("{id}")]
         public async Task<ActionResult<BoxUser>> GetBoxUser(int id)
