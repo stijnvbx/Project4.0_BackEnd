@@ -13,6 +13,8 @@ namespace Project4._0_BackEnd.Models
         public string MacAddress { get; set; }
         public string Name { get; set; }
         public string Comment { get; set; }
+
+        public string ConfiguratieString { get; set; }
         public bool Active { get; set; }
 
         //Relations
