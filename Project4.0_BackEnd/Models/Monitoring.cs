@@ -9,7 +9,7 @@ namespace Project4._0_BackEnd.Models
     public class Monitoring
     {
         public int MonitoringID { get; set; }
-        public double BatteryPercentage { get; set; }
+        public string BatteryPercentage { get; set; }
         public bool BatteryStatus { get; set; }
         public double SDCapacity { get; set; }
 

@@ -43,13 +43,15 @@ namespace Project4._0_BackEnd.Models
             context.SaveChanges();
             context.SensorTypes.AddRange(
                 new SensorType { Name = "temperatuur", Unit = "C" },
-                new SensorType { Name = "windsnelheid", Unit = "km/u" }
+                new SensorType { Name = "windsnelheid", Unit = "km/u" },
+                new SensorType { Name = "Bodenvochtigheid", Unit = ""}
                 );
             context.SaveChanges();
             context.Sensors.AddRange(
                 new Sensor { Name = "Grondtemperatuur", SensorTypeID = 1 },
                 new Sensor { Name = "Luchttemperatuur", SensorTypeID = 1 },
-                new Sensor { Name = "Windsnelheid", SensorTypeID = 2 }
+                new Sensor { Name = "Windsnelheid", SensorTypeID = 2 },
+                new Sensor { Name = "Bodemvochtigheid", SensorTypeID = 3 }
                 );
             context.SaveChanges();
             context.SensorBoxes.AddRange(
