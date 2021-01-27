@@ -61,7 +61,7 @@ namespace Project4._0_BackEnd.Models
                 );
             context.SaveChanges();
             context.Measurements.AddRange(
-                new Measurement { BoxID = 1, SensorID = 1, Timestamp = new DateTime(), Value = "200"}
+                new Measurement { BoxID = 1, SensorID = 1, TimeStamp = new DateTime(), Value = "200"}
                 );
             context.SaveChanges();
         }
