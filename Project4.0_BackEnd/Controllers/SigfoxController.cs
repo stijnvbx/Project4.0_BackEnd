@@ -21,8 +21,9 @@ namespace Project4._0_BackEnd.Controllers
         }
 
         [HttpPost("{Mac}/{Value}")]
-        public async Task PostMeasurement(string Mac, string Value)
+        public async Task PostMeasurement(string Mac, [FromBody] string Value)
         {
+            string[] list = Value.Split(",");
             Box box = _context.Boxes.FirstOrDefault(b => b.MacAddress == Mac);
             if (box == null)
             {
@@ -31,9 +32,15 @@ namespace Project4._0_BackEnd.Controllers
             Measurement measurement1 = new Measurement();
             measurement1.BoxID = box.BoxID;
             measurement1.SensorID = 12;
-            measurement1.Value = Value;
+            measurement1.Value = list[1];
             measurement1.TimeStamp = DateTime.Now;
             _context.Measurements.Add(measurement1);
+            Measurement measurement2 = new Measurement();
+            measurement2.BoxID = box.BoxID;
+            measurement2.SensorID = 11;
+            measurement2.Value = list[2];
+            measurement2.TimeStamp = DateTime.Now;
+            _context.Measurements.Add(measurement2);
             await _context.SaveChangesAsync();
 
         }
