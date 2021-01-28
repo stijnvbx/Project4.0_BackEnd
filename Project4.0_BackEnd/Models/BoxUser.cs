@@ -11,7 +11,7 @@ namespace Project4._0_BackEnd.Models
     {
         public int BoxUserID { get; set; }
         public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
+        public DateTime? EndDate { get; set; }
 
         //Relations
         [ForeignKey("Box")]
