@@ -28,35 +28,43 @@ namespace Project4._0_BackEnd.Controllers
             {
                 return;
             }
+            DateTime date1 = DateTime.UtcNow;
+            TimeZoneInfo timeZoneInfo = TimeZoneInfo.FindSystemTimeZoneById("Central European Standard Time");
+            DateTime date2 = TimeZoneInfo.ConvertTime(date1, timeZoneInfo);
+
             Measurement measurement1 = new Measurement();
             measurement1.BoxID = box.BoxID;
             measurement1.SensorID = 12;
             measurement1.Value = tempMcu;
-            measurement1.TimeStamp = DateTime.Now;
+            measurement1.TimeStamp = date2;
             _context.Measurements.Add(measurement1);
+
             Measurement measurement2 = new Measurement();
             measurement2.BoxID = box.BoxID;
             measurement2.SensorID = 11;
             measurement2.Value = vocht;
-            measurement2.TimeStamp = DateTime.Now;
+            measurement2.TimeStamp = date2;
             _context.Measurements.Add(measurement2);
+
             Measurement measurement3 = new Measurement();
             measurement3.BoxID = box.BoxID;
             measurement3.SensorID = 12;
             measurement3.Value = tempB;
-            measurement3.TimeStamp = DateTime.Now;
+            measurement3.TimeStamp = date2;
             _context.Measurements.Add(measurement3);
+
             Measurement measurement4 = new Measurement();
             measurement4.BoxID = box.BoxID;
             measurement4.SensorID = 11;
             measurement4.Value = bVocht;
-            measurement4.TimeStamp = DateTime.Now;
+            measurement4.TimeStamp = date2;
             _context.Measurements.Add(measurement4);
+
             Measurement measurement5 = new Measurement();
             measurement5.BoxID = box.BoxID;
             measurement5.SensorID = 12;
             measurement5.Value = temp;
-            measurement5.TimeStamp = DateTime.Now;
+            measurement5.TimeStamp = date2;
             _context.Measurements.Add(measurement5);
             await _context.SaveChangesAsync();
 
