@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Project4._0_BackEnd.Data;
 using Project4._0_BackEnd.Models;
-using Project4._0_BackEnd.Services;
 
 namespace Project4._0_BackEnd.Controllers
 {
@@ -16,11 +15,9 @@ namespace Project4._0_BackEnd.Controllers
     public class UserController : ControllerBase
     {
         private readonly ApiContext _context;
-        private IUserService _userService;
 
-        public UserController(IUserService userService, ApiContext context)
+        public UserController(ApiContext context)
         {
-            _userService = userService;
             _context = context;
         }
 
@@ -97,27 +94,10 @@ namespace Project4._0_BackEnd.Controllers
         [HttpPost]
         public async Task<ActionResult<User>> PostUser(User user)
         {
-
-            user.Password = BCrypt.Net.BCrypt.HashPassword(user.Password);
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
 
-            return Ok(user);
-        }
-
-        //api/User/authenticate
-        [HttpPost("authenticate")]
-        public IActionResult Authenticate([FromBody] User userParam)
-        {
-            var user = _userService.Authenticate(userParam.Email, userParam.Password);
-
-            if (user == null)
-
-                return BadRequest(new { message = "Email or password is incorrect" });
-
-
-
-            return Ok(user);
+            return CreatedAtAction("GetUser", new { id = user.UserID }, user);
         }
 
         // DELETE: api/User/5

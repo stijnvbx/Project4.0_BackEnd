@@ -18,9 +18,6 @@ namespace Project4._0_BackEnd.Models
         public string PostalCode { get; set; }
         public string City { get; set; }
 
-        [NotMapped]
-        public string Token { get; set; }
-
 
         //Relations
         public int UserTypeID { get; set; }
