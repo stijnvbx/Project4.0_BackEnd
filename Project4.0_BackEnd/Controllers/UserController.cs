@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Project4._0_BackEnd.Data;
 using Project4._0_BackEnd.Models;
+using Project4._0_BackEnd.Services;
 
 namespace Project4._0_BackEnd.Controllers
 {
@@ -14,10 +15,12 @@ namespace Project4._0_BackEnd.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
+        private IUserService _userService;
         private readonly ApiContext _context;
 
-        public UserController(ApiContext context)
+        public UserController(IUserService userService, ApiContext context)
         {
+            _userService = userService;
             _context = context;
         }
 
@@ -54,6 +57,21 @@ namespace Project4._0_BackEnd.Controllers
             }
 
             return user;
+        }
+
+        //api/User/authenticate
+        [HttpPost("authenticate")]
+        public IActionResult Authenticate([FromBody] User userParam)
+        {
+            var user = _userService.Authenticate(userParam.Email, userParam.Password);
+
+            if (user == null)
+
+                return BadRequest(new { message = "Email or password is incorrect" });
+
+
+
+            return Ok(user);
         }
 
         // PUT: api/User/5
