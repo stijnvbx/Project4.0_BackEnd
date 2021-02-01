@@ -14,6 +14,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.OpenApi.Models;
 using Project4._0_BackEnd.Models;
+using Project4._0_BackEnd.Helpers;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using System.Text;
+using Microsoft.IdentityModel.Tokens;
+using Project4._0_BackEnd.Services;
 
 namespace Project4._0_BackEnd
 {
