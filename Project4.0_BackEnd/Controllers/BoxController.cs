@@ -29,10 +29,17 @@ namespace Project4._0_BackEnd.Controllers
         }
 
         // GET: api/Box/Sensor
-        [HttpGet("Sensor/Measurements")]
-        public async Task<ActionResult<IEnumerable<Box>>> GetBoxWithSensor()
+        [HttpGet("Sensor/Measurements/{id}")]
+        public async Task<ActionResult<Box>> GetBoxWithSensor(int id)
         {
-            return await _context.Boxes.Include(b => b.SensorBoxes).ThenInclude(s => s.Measurements).Include(b => b.SensorBoxes).ThenInclude(s => s.Sensor).ToListAsync();
+            var box = await _context.Boxes.Where(b => b.BoxID == id).Include(b => b.SensorBoxes).ThenInclude(s => s.Measurements).Include(b => b.SensorBoxes).ThenInclude(s => s.Sensor).FirstAsync();
+
+            if (box == null)
+            {
+                return NotFound();
+            }
+
+            return box;
         }
 
         // GET: api/Box/5
