@@ -10,7 +10,7 @@ namespace Project4._0_BackEnd.Models
     public class BoxUser
     {
         public int BoxUserID { get; set; }
-        public DateTime StartDate { get; set; }
+        public DateTime? StartDate { get; set; }
         public DateTime? EndDate { get; set; }
 
         //Relations
