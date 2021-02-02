@@ -54,7 +54,7 @@ namespace Project4._0_BackEnd.Controllers
                 
                 foreach (string sensor in sensors) {
 
-                    SensorBox sensorBox = _context.SensorBoxes.FirstOrDefault(s => s.SensorID == int.Parse(sensor));
+                    SensorBox sensorBox = _context.SensorBoxes.Where(s => s.BoxID == box.BoxID).FirstOrDefault(s => s.SensorID == int.Parse(sensor));
                     if (sensorBox == null)
                     {
                         SensorBox sensorBox1 = new SensorBox();
