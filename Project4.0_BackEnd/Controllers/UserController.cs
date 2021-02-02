@@ -41,6 +41,7 @@ namespace Project4._0_BackEnd.Controllers
         }
 
         // GET: api/User/5
+        [Authorize]
         [HttpGet("{id}")]
         public async Task<ActionResult<User>> GetUser(int id)
         {
