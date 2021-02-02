@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -31,14 +32,8 @@ namespace Project4._0_BackEnd.Controllers
             return await _context.Users.Include(u => u.UserType).ToListAsync();
         }
 
-        // GET: api/User/login
-        [HttpGet("login")]
-        public async Task<ActionResult<IEnumerable<User>>> GetUserLogin(string email, string password)
-        {
-            return await _context.Users.Where(u => u.Email == email).Where(u => u.Password == password).ToListAsync();
-        }
-
         // GET: api/User/email
+        [Authorize]
         [HttpGet("email")]
         public async Task<ActionResult<IEnumerable<User>>> GetUserEmail(string email)
         {
@@ -77,6 +72,7 @@ namespace Project4._0_BackEnd.Controllers
         // PUT: api/User/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
+        [Authorize]
         [HttpPut("{id}")]
         public async Task<IActionResult> PutUser(int id, [FromBody] User user)
         {
