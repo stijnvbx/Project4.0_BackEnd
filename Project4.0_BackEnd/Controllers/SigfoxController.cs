@@ -51,7 +51,8 @@ namespace Project4._0_BackEnd.Controllers
                 //string[] values = test.Split(",");
                 string conf = box.ConfiguratieString;
                 string[] sensors = conf.Split(",");
-                
+                int i = 0;
+
                 foreach (string sensor in sensors) {
 
                     SensorBox sensorBox = _context.SensorBoxes.Where(s => s.BoxID == box.BoxID).FirstOrDefault(s => s.SensorID == int.Parse(sensor));
@@ -64,7 +65,6 @@ namespace Project4._0_BackEnd.Controllers
                         await _context.SaveChangesAsync();
                     }
 
-                    int i = 0;
                     Measurement measurement = new Measurement();
                     measurement.BoxID = box.BoxID;
                     measurement.SensorID = int.Parse(sensor);
