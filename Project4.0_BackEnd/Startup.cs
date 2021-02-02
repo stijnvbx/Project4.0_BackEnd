@@ -90,6 +90,7 @@ namespace Project4._0_BackEnd
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
