@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Project4._0_BackEnd.Data;
+using Project4._0_BackEnd.Helpers;
 using Project4._0_BackEnd.Models;
 using System;
 using System.Collections.Generic;
@@ -14,14 +15,15 @@ namespace Project4._0_BackEnd.Controllers
     public class SigfoxController : ControllerBase
     {
         private readonly ApiContext _context;
+        private HexHelper hexHelper;
 
         public SigfoxController(ApiContext context)
         {
             _context = context;
         }
 
-        [HttpPost("{Mac}/{tempMcu}/{tempB}/{temp}/{vocht}/{bVocht}")]
-        public async Task PostMeasurement(string Mac, string tempMcu, string tempB, string temp, string vocht, string bVocht)
+        [HttpPost("{Mac}/{data}")]
+        public async Task PostMeasurement(string Mac, string data)
         {
             Box box = _context.Boxes.FirstOrDefault(b => b.MacAddress == Mac);
             if (box == null)
@@ -32,42 +34,48 @@ namespace Project4._0_BackEnd.Controllers
             TimeZoneInfo timeZoneInfo = TimeZoneInfo.FindSystemTimeZoneById("Central European Standard Time");
             DateTime date2 = TimeZoneInfo.ConvertTime(date1, timeZoneInfo);
 
-            Measurement measurement1 = new Measurement();
-            measurement1.BoxID = box.BoxID;
-            measurement1.SensorID = 12;
-            measurement1.Value = tempMcu;
-            measurement1.TimeStamp = date2;
-            _context.Measurements.Add(measurement1);
+            List<string> dummy = HexHelper.HexConv(data);
+            if (int.Parse(dummy[0]) == 1)
+            {
+                dummy.Remove("1");
+                dummy.RemoveAll(p => p == "0");
+                string test = string.Join(",", dummy);
+                box.ConfiguratieString = test;
+                await _context.SaveChangesAsync();
+                return;
+            }
+            if (int.Parse(dummy[0]) == 2)
+            {
+                dummy.Remove("2");
+                //string test = string.Join(",", dummy);
+                //string[] values = test.Split(",");
+                string conf = box.ConfiguratieString;
+                string[] sensors = conf.Split(",");
+                
+                foreach (string sensor in sensors) {
 
-            Measurement measurement2 = new Measurement();
-            measurement2.BoxID = box.BoxID;
-            measurement2.SensorID = 11;
-            measurement2.Value = vocht;
-            measurement2.TimeStamp = date2;
-            _context.Measurements.Add(measurement2);
+                    SensorBox sensorBox = _context.SensorBoxes.FirstOrDefault(s => s.SensorID == int.Parse(sensor));
+                    if (sensorBox == null)
+                    {
+                        SensorBox sensorBox1 = new SensorBox();
+                        sensorBox1.BoxID = box.BoxID;
+                        sensorBox1.SensorID = int.Parse(sensor);
+                        _context.SensorBoxes.Add(sensorBox1);
+                        await _context.SaveChangesAsync();
+                    }
 
-            Measurement measurement3 = new Measurement();
-            measurement3.BoxID = box.BoxID;
-            measurement3.SensorID = 12;
-            measurement3.Value = tempB;
-            measurement3.TimeStamp = date2;
-            _context.Measurements.Add(measurement3);
-
-            Measurement measurement4 = new Measurement();
-            measurement4.BoxID = box.BoxID;
-            measurement4.SensorID = 11;
-            measurement4.Value = bVocht;
-            measurement4.TimeStamp = date2;
-            _context.Measurements.Add(measurement4);
-
-            Measurement measurement5 = new Measurement();
-            measurement5.BoxID = box.BoxID;
-            measurement5.SensorID = 12;
-            measurement5.Value = temp;
-            measurement5.TimeStamp = date2;
-            _context.Measurements.Add(measurement5);
-            await _context.SaveChangesAsync();
-
+                    int i = 0;
+                    Measurement measurement = new Measurement();
+                    measurement.BoxID = box.BoxID;
+                    measurement.SensorID = int.Parse(sensor);
+                    measurement.TimeStamp = date2;
+                    measurement.Value = dummy[i];
+                    i++;
+                    _context.Measurements.Add(measurement);
+                    await _context.SaveChangesAsync();
+                }
+                return;
+            }
         }
     }
 }
