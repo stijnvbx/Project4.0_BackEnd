@@ -31,10 +31,10 @@ namespace Project4._0_BackEnd.Controllers
 
         // GET: api/Box/Sensor
         [Authorize]
-        [HttpGet("Sensor/Measurements/{id}")]
+        [HttpGet("Sensor/{id}")]
         public async Task<ActionResult<Box>> GetBoxWithSensor(int id)
         {
-            var box = await _context.Boxes.Where(b => b.BoxID == id).Include(b => b.SensorBoxes).ThenInclude(s => s.Measurements).Include(b => b.SensorBoxes).ThenInclude(s => s.Sensor).FirstAsync();
+            var box = await _context.Boxes.Where(b => b.BoxID == id).Include(b => b.SensorBoxes).ThenInclude(s => s.Sensor).FirstAsync();
 
             if (box == null)
             {
