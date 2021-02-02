@@ -34,7 +34,7 @@ namespace Project4._0_BackEnd.Controllers
         [HttpGet("Sensor/{id}")]
         public async Task<ActionResult<Box>> GetBoxWithSensor(int id)
         {
-            var box = await _context.Boxes.Where(b => b.BoxID == id).Include(b => b.SensorBoxes).ThenInclude(s => s.Sensor).FirstAsync();
+            var box = await _context.Boxes.Where(b => b.BoxID == id).Include(b => b.SensorBoxes).FirstAsync();
 
             if (box == null)
             {
