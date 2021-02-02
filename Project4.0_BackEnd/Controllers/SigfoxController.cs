@@ -15,7 +15,6 @@ namespace Project4._0_BackEnd.Controllers
     public class SigfoxController : ControllerBase
     {
         private readonly ApiContext _context;
-        private HexHelper hexHelper;
 
         public SigfoxController(ApiContext context)
         {
