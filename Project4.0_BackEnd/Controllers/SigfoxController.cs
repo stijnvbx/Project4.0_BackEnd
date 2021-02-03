@@ -54,13 +54,14 @@ namespace Project4._0_BackEnd.Controllers
 
                 foreach (string sensor in sensors) {
 
-                    SensorBox sensorBox = _context.SensorBoxes.Where(s => s.BoxID == box.BoxID).FirstOrDefault(s => s.SensorID == int.Parse(sensor));
-                    Sensor sensor1 = _context.Sensors.FirstOrDefault(s => s.SensorID == int.Parse(sensor));
+                    int sensorid = int.Parse(sensor);
+                    SensorBox sensorBox = _context.SensorBoxes.Where(s => s.BoxID == box.BoxID).FirstOrDefault(s => s.SensorID == sensorid);
+                    Sensor sensor1 = _context.Sensors.FirstOrDefault(s => s.SensorID == sensorid);
                     if (sensorBox == null)
                     {
                         SensorBox sensorBox1 = new SensorBox();
                         sensorBox1.BoxID = box.BoxID;
-                        sensorBox1.SensorID = int.Parse(sensor);
+                        sensorBox1.SensorID = sensorid;
                         _context.SensorBoxes.Add(sensorBox1);
                         await _context.SaveChangesAsync();
                     }
@@ -69,12 +70,9 @@ namespace Project4._0_BackEnd.Controllers
                     measurement.BoxID = box.BoxID;
                     if (sensor1.SensorTypeID == 4)
                     {
-                        measurement.SensorID = int.Parse(sensor) - 100;
+                        sensorid -= 100;
                     }
-                    else
-                    {
-                        measurement.SensorID = int.Parse(sensor);
-                    }
+                    measurement.SensorID = sensorid;
                     measurement.TimeStamp = date2;
                     measurement.Value = dummy[i];
                     i++;
