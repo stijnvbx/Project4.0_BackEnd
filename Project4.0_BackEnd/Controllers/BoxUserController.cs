@@ -23,10 +23,11 @@ namespace Project4._0_BackEnd.Controllers
         }
 
         // GET: api/BoxUser
+        [Authorize]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<BoxUser>>> GetBoxUser()
         {
-            return await _context.BoxUsers.ToListAsync();
+            return await _context.BoxUsers.Include(b => b.Box).Include(b => b.Locations).ToListAsync();
         }
 
 
