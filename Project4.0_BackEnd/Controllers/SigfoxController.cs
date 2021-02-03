@@ -68,13 +68,17 @@ namespace Project4._0_BackEnd.Controllers
 
                     Measurement measurement = new Measurement();
                     measurement.BoxID = box.BoxID;
-                    if (sensor1.SensorTypeID == 4)
-                    {
-                        sensorid -= 100;
-                    }
                     measurement.SensorID = sensorid;
                     measurement.TimeStamp = date2;
-                    measurement.Value = dummy[i];
+                    if (sensor1.SensorTypeID == 4)
+                    {
+                        int value = int.Parse(dummy[i]) - 100;
+                        measurement.Value = value.ToString();
+                    }
+                    else
+                    {
+                        measurement.Value = dummy[i];
+                    }
                     i++;
                     _context.Measurements.Add(measurement);
                     await _context.SaveChangesAsync();
