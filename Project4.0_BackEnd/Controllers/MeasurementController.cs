@@ -33,7 +33,7 @@ namespace Project4._0_BackEnd.Controllers
         [HttpGet("Sensor/{id}")]
         public async Task<ActionResult<IEnumerable<Measurement>>> GetMeasurementsFromSensor(int id)
         {
-            return await _context.Measurements.Where(m => m.SensorID == id).Include(m => m.SensorBox).ThenInclude(s => s.Sensor).ThenInclude(s => s.SensorType).ToListAsync();
+            return await _context.Measurements.Where(m => m.SensorID == id).ToListAsync();
         }
 
         // GET: api/Measurement/5

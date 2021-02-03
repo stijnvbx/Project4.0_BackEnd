@@ -32,7 +32,7 @@ namespace Project4._0_BackEnd.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Sensor>> GetSensor(int id)
         {
-            var sensor = await _context.Sensors.FindAsync(id);
+            var sensor = await _context.Sensors.Where(s => s.SensorID == id).Include(s => s.SensorType).FirstAsync();
 
             if (sensor == null)
             {
