@@ -84,19 +84,22 @@ namespace Project4._0_BackEnd.Controllers
 
             _context.Entry(user).State = EntityState.Modified;
 
-            try
+            if (_context.Users.Where(u => u.Email == user.Email).FirstOrDefault() == null)
             {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!UserExists(id))
+                try
                 {
-                    return NotFound();
+                    await _context.SaveChangesAsync();
                 }
-                else
+                catch (DbUpdateConcurrencyException)
                 {
-                    throw;
+                    if (!UserExists(id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
                 }
             }
 
@@ -109,10 +112,14 @@ namespace Project4._0_BackEnd.Controllers
         [HttpPost]
         public async Task<ActionResult<User>> PostUser(User user)
         {
-            _context.Users.Add(user);
-            await _context.SaveChangesAsync();
+            if (_context.Users.Where(u => u.Email == user.Email).FirstOrDefault() == null)
+            {
+                _context.Users.Add(user);
+                await _context.SaveChangesAsync();
+                return CreatedAtAction("GetUser", new { id = user.UserID }, user);
+            }
+             return NoContent();
 
-            return CreatedAtAction("GetUser", new { id = user.UserID }, user);
         }
 
         // DELETE: api/User/5
