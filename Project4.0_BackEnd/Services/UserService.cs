@@ -43,9 +43,7 @@ namespace Project4._0_BackEnd.Services
                 Subject = new ClaimsIdentity(new Claim[]
                 {
                     new Claim("UserID", user.UserID.ToString()),
-                    new Claim("Email", user.Email),
-                    new Claim("UserTypeID", user.UserTypeID.ToString()),
-                    new Claim("UserType", user.UserType.UserTypeName)
+                    new Claim("Email", user.Email)
                 }),
                 Expires = DateTime.UtcNow.AddDays(7),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
