@@ -75,7 +75,7 @@ namespace Project4._0_BackEnd.Controllers
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [Authorize]
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutUser(int id, [FromBody] User user)
+        public async Task<ActionResult<User>> PutUser(int id, [FromBody] User user)
         {
             if (id != user.UserID)
             {
@@ -84,8 +84,6 @@ namespace Project4._0_BackEnd.Controllers
 
             _context.Entry(user).State = EntityState.Modified;
 
-            if (_context.Users.Where(u => u.Email == user.Email).FirstOrDefault() == null)
-            {
                 try
                 {
                     await _context.SaveChangesAsync();
@@ -101,9 +99,8 @@ namespace Project4._0_BackEnd.Controllers
                         throw;
                     }
                 }
-            }
 
-            return NoContent();
+            return user;
         }
 
         // POST: api/User
