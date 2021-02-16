@@ -25,12 +25,12 @@ namespace Project4._0_BackEnd.Controllers
             _context = context;
         }
 
-        // GET: api/User
+ /*       // GET: api/User
         [HttpGet]
         public async Task<ActionResult<IEnumerable<User>>> GetUsers()
         {
             return await _context.Users.Include(u => u.UserType).ToListAsync();
-        }
+        }*/
 
         // GET: api/User/email
         [Authorize]
@@ -103,7 +103,7 @@ namespace Project4._0_BackEnd.Controllers
             return user;
         }
 
-        // POST: api/User
+/*        // POST: api/User
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
@@ -133,7 +133,7 @@ namespace Project4._0_BackEnd.Controllers
             await _context.SaveChangesAsync();
 
             return user;
-        }
+        }*/
 
         private bool UserExists(int id)
         {

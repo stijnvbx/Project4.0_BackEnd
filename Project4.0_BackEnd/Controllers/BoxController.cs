@@ -22,13 +22,6 @@ namespace Project4._0_BackEnd.Controllers
             _context = context;
         }
 
-        // GET: api/Box
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Box>>> GetBox()
-        {
-            return await _context.Boxes.ToListAsync();
-        }
-
         // GET: api/Box/Sensor
         [Authorize]
         [HttpGet("Sensor/{id}")]
@@ -43,21 +36,7 @@ namespace Project4._0_BackEnd.Controllers
 
             return box;
         }
-
-        // GET: api/Box/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Box>> GetBox(int id)
-        {
-            var box = await _context.Boxes.FindAsync(id);
-
-            if (box == null)
-            {
-                return NotFound();
-            }
-
-            return box;
-        }
-
+/*
         // PUT: api/Box/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
@@ -121,6 +100,6 @@ namespace Project4._0_BackEnd.Controllers
         private bool BoxExists(int id)
         {
             return _context.Boxes.Any(e => e.BoxID == id);
-        }
+        }*/
     }
 }

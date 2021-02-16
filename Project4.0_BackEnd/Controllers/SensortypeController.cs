@@ -21,7 +21,7 @@ namespace Project4._0_BackEnd.Controllers
             _context = context;
         }
 
-        // GET: api/SensorType
+/*        // GET: api/SensorType
         [HttpGet]
         public async Task<ActionResult<IEnumerable<SensorType>>> GetSensorType()
         {
@@ -105,6 +105,6 @@ namespace Project4._0_BackEnd.Controllers
         private bool SensorTypeExists(int id)
         {
             return _context.SensorTypes.Any(e => e.SensorTypeID == id);
-        }
+        }*/
     }
 }

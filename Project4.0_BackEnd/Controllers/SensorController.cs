@@ -21,7 +21,7 @@ namespace Project4._0_BackEnd.Controllers
             _context = context;
         }
 
-        // GET: api/Sensor
+/*        // GET: api/Sensor
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Sensor>>> GetSensor()
         {
@@ -105,6 +105,6 @@ namespace Project4._0_BackEnd.Controllers
         private bool SensorExists(int id)
         {
             return _context.Sensors.Any(e => e.SensorID == id);
-        }
+        }*/
     }
 }

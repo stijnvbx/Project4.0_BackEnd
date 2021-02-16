@@ -21,7 +21,7 @@ namespace Project4._0_BackEnd.Controllers
             _context = context;
         }
 
-        // GET: api/Location
+/*        // GET: api/Location
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Location>>> GetLocation()
         {
@@ -105,6 +105,6 @@ namespace Project4._0_BackEnd.Controllers
         private bool LocationExists(int id)
         {
             return _context.Locations.Any(e => e.LocationID == id);
-        }
+        }*/
     }
 }

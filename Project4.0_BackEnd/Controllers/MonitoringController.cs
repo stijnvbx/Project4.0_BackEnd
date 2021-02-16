@@ -20,7 +20,7 @@ namespace Project4._0_BackEnd.Controllers
         {
             _context = context;
         }
-
+/*
         // GET: api/Monitoring
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Monitoring>>> GetMonitoring()
@@ -105,6 +105,6 @@ namespace Project4._0_BackEnd.Controllers
         private bool MonitoringExists(int id)
         {
             return _context.Monitorings.Any(e => e.MonitoringID == id);
-        }
+        }*/
     }
 }
