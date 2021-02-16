@@ -21,7 +21,7 @@ namespace Project4._0_BackEnd.Controllers
             _context = context;
         }
 
-        // GET: api/UserType
+/*        // GET: api/UserType
         [HttpGet]
         public async Task<ActionResult<IEnumerable<UserType>>> GetUserType()
         {
@@ -106,5 +106,5 @@ namespace Project4._0_BackEnd.Controllers
         {
             return _context.UserTypes.Any(e => e.UserTypeID == id);
         }
-    }
+*/    }
 }

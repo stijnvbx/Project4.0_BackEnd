@@ -38,7 +38,7 @@ namespace Project4._0_BackEnd.Controllers
         {
             return await _context.BoxUsers.Include(b => b.Box).Include(b => b.Locations).Where(b => b.UserID == id).ToListAsync();
         }
-
+/*
         // GET: api/BoxUser/5
         [HttpGet("{id}")]
         public async Task<ActionResult<BoxUser>> GetBoxUser(int id)
@@ -117,5 +117,5 @@ namespace Project4._0_BackEnd.Controllers
         {
             return _context.BoxUsers.Any(e => e.BoxUserID == id);
         }
-    }
+    }*/
 }
