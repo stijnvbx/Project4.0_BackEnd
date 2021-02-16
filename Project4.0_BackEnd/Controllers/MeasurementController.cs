@@ -27,14 +27,15 @@ namespace Project4._0_BackEnd.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Measurement>>> GetMeasurement()
         {
-            return await _context.Measurements.Take(5000).ToListAsync();
+            return await _context.Measurements.OrderByDescending(m => m.MeasurementID).Take(5000).ToListAsync();
+
         }
 
         [Authorize]
         [HttpGet("Sensor/{id}")]
         public async Task<ActionResult<IEnumerable<Measurement>>> GetMeasurementsFromSensor(int id)
         {
-            return await _context.Measurements.Where(m => m.SensorID == id).Take(5000).ToListAsync();
+            return await _context.Measurements.Where(m => m.SensorID == id).OrderByDescending(m => m.MeasurementID).Take(5000).ToListAsync();
         }
 
 /*        // GET: api/Measurement/5
