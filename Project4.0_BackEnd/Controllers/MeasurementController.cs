@@ -27,7 +27,7 @@ namespace Project4._0_BackEnd.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Measurement>>> GetMeasurement()
         {
-            return await _context.Measurements.ToListAsync();
+            return await _context.Measurements.Take(5000).ToListAsync();
         }
 
         [Authorize]
