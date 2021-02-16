@@ -28,6 +28,7 @@ namespace Project4._0_BackEnd.Controllers
         public async Task<ActionResult<IEnumerable<Measurement>>> GetMeasurement()
         {
             return await _context.Measurements.OrderByDescending(m => m.MeasurementID).Take(5000).ToListAsync();
+
         }
 
         [Authorize]
