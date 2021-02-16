@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Project4._0_BackEnd.Data;
@@ -32,6 +33,7 @@ namespace Project4._0_BackEnd.Controllers
         // GET: api/Sensor/5
         [Authorize]
         [HttpGet("{id}")]
+        [Authorize]
         public async Task<ActionResult<Sensor>> GetSensor(int id)
         {
             var sensor = await _context.Sensors.Where(s => s.SensorID == id).Include(s => s.SensorType).FirstAsync();
