@@ -38,84 +38,85 @@ namespace Project4._0_BackEnd.Controllers
         {
             return await _context.BoxUsers.Include(b => b.Box).Include(b => b.Locations).Where(b => b.UserID == id).ToListAsync();
         }
-/*
-        // GET: api/BoxUser/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<BoxUser>> GetBoxUser(int id)
-        {
-            var BoxUser = await _context.BoxUsers.FindAsync(id);
-
-            if (BoxUser == null)
-            {
-                return NotFound();
-            }
-
-            return BoxUser;
-        }
-
-        // PUT: api/BoxUser/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutBoxUser(int id, BoxUser BoxUser)
-        {
-            if (id != BoxUser.BoxUserID)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(BoxUser).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!BoxUserExists(id))
+        /*
+                // GET: api/BoxUser/5
+                [HttpGet("{id}")]
+                public async Task<ActionResult<BoxUser>> GetBoxUser(int id)
                 {
-                    return NotFound();
+                    var BoxUser = await _context.BoxUsers.FindAsync(id);
+
+                    if (BoxUser == null)
+                    {
+                        return NotFound();
+                    }
+
+                    return BoxUser;
                 }
-                else
+
+                // PUT: api/BoxUser/5
+                // To protect from overposting attacks, enable the specific properties you want to bind to, for
+                // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
+                [HttpPut("{id}")]
+                public async Task<IActionResult> PutBoxUser(int id, BoxUser BoxUser)
                 {
-                    throw;
+                    if (id != BoxUser.BoxUserID)
+                    {
+                        return BadRequest();
+                    }
+
+                    _context.Entry(BoxUser).State = EntityState.Modified;
+
+                    try
+                    {
+                        await _context.SaveChangesAsync();
+                    }
+                    catch (DbUpdateConcurrencyException)
+                    {
+                        if (!BoxUserExists(id))
+                        {
+                            return NotFound();
+                        }
+                        else
+                        {
+                            throw;
+                        }
+                    }
+
+                    return NoContent();
                 }
-            }
 
-            return NoContent();
-        }
+                // POST: api/BoxUser
+                // To protect from overposting attacks, enable the specific properties you want to bind to, for
+                // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
+                [HttpPost]
+                public async Task<ActionResult<BoxUser>> PostBoxUser(BoxUser BoxUser)
+                {
+                    _context.BoxUsers.Add(BoxUser);
+                    await _context.SaveChangesAsync();
 
-        // POST: api/BoxUser
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPost]
-        public async Task<ActionResult<BoxUser>> PostBoxUser(BoxUser BoxUser)
-        {
-            _context.BoxUsers.Add(BoxUser);
-            await _context.SaveChangesAsync();
+                    return CreatedAtAction("GetBoxUser", new { id = BoxUser.BoxUserID }, BoxUser);
+                }
 
-            return CreatedAtAction("GetBoxUser", new { id = BoxUser.BoxUserID }, BoxUser);
-        }
+                // DELETE: api/BoxUser/5
+                [HttpDelete("{id}")]
+                public async Task<ActionResult<BoxUser>> DeleteBoxUser(int id)
+                {
+                    var BoxUser = await _context.BoxUsers.FindAsync(id);
+                    if (BoxUser == null)
+                    {
+                        return NotFound();
+                    }
 
-        // DELETE: api/BoxUser/5
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<BoxUser>> DeleteBoxUser(int id)
-        {
-            var BoxUser = await _context.BoxUsers.FindAsync(id);
-            if (BoxUser == null)
-            {
-                return NotFound();
-            }
+                    _context.BoxUsers.Remove(BoxUser);
+                    await _context.SaveChangesAsync();
 
-            _context.BoxUsers.Remove(BoxUser);
-            await _context.SaveChangesAsync();
+                    return BoxUser;
+                }
 
-            return BoxUser;
-        }
-
-        private bool BoxUserExists(int id)
-        {
-            return _context.BoxUsers.Any(e => e.BoxUserID == id);
-        }
-*/  }
+                private bool BoxUserExists(int id)
+                {
+                    return _context.BoxUsers.Any(e => e.BoxUserID == id);
+                }
+*/       }
 }
+
